@@ -1,0 +1,31 @@
+#!/bin/bash
+
+echo "Menjalankan Wordpress installasi"
+isvalid=true
+count=1
+while [ $isvalid ]
+do
+echo $count
+if [ $count -eq 3 ];
+then
+break
+fi
+((count++))
+done
+
+packageWordpress (){
+  
+apt update && apt upgrade
+apt-get install bind9
+apt-get install apache2 apache2-doc
+apt-get install mysql-server php5-mysql
+apt-get install php5-common libapache2-mod-php5 php5-cli
+cd /var/www/html/
+wget https://192.168.5.79:8080/wordpress-4.8.1.tar.gz
+tar -xvzf wordpress-4.8.1.tar.gz
+nano /etc/apache2/sites-available/000-default.conf
+
+
+}
+packageWordpress
+
